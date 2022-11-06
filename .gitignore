@@ -1,0 +1,5 @@
+.env
+.nvmrc
+*.iml
+.idea
+node_modules

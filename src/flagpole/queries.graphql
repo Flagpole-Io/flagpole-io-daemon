@@ -1,0 +1,18 @@
+query getConfiguration {
+    configuration {
+        hasMotor
+        hasWeatherProofFlag
+        hasLights
+    }
+}
+
+query getStatus {
+    status {
+        flag
+        lights
+    }
+}
+
+mutation addRequest($input: RequestInput!) {
+    addRequest(input: $input)
+}
