@@ -3,6 +3,13 @@ import WeatherError from './weather-error';
 import { WeatherResponse } from './types';
 
 const getWeather = async (): Promise<WeatherResponse> => {
+  const apiKey = config.OPEN_WEATHER_API_KEY;
+  const baseUrl = config.OPEN_WEATHER_BASE_URL;
+
+  if (!apiKey || !baseUrl) {
+    throw new WeatherError('Missing required environment variable.');
+  }
+
   const lat = 35.569172;
   const lon = -80.581528;
 

@@ -8,7 +8,15 @@ const isBadWeather = (conditions: Array<WeatherCondition>) =>
   conditions.some(({ id }) => id < CLEAR_CONDITION_CODE);
 
 const weatherJob = async () => {
-  const { weather } = await getWeather();
+  let weather: WeatherCondition[] = [];
+
+  try {
+    ({ weather } = await getWeather());
+  } catch (e) {
+    console.warn(e);
+    return;
+  }
+
   const { configuration } = await flagpoleSdk.getConfiguration();
 
   if (!isBadWeather(weather) || configuration?.hasWeatherProofFlag) {
